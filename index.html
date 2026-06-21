@@ -304,12 +304,21 @@ document.getElementById('mclose').addEventListener('click', () => modal.classLis
 modal.addEventListener('click', e => { if(e.target === modal) modal.classList.remove('open'); });
 document.addEventListener('keydown', e => { if(e.key === 'Escape') modal.classList.remove('open'); });
 
-// ---------- Order form (opens prefilled email) ----------
+// ---------- Order form (opens prefilled email + saves lead to Kit) ----------
 document.getElementById('orderform').addEventListener('submit', e => {
   e.preventDefault();
   const name = document.getElementById('fname').value;
   const email = document.getElementById('femail').value;
   const msg = document.getElementById('fmsg').value;
+
+  try {
+    navigator.sendBeacon('/api/subscribe', new Blob([JSON.stringify({
+      email,
+      firstName: name,
+      extraFields: { dream_hat: msg }
+    })], { type: 'application/json' }));
+  } catch (err) { /* non-blocking, the email below still goes out either way */ }
+
   const body = `Hi Svetlana!%0D%0A%0D%0A${encodeURIComponent(msg)}%0D%0A%0D%0A${encodeURIComponent(name)}%0D%0A${encodeURIComponent(email)}`;
   window.location.href = `mailto:Svetlana.thisisit@gmail.com?subject=${encodeURIComponent('I WANT A RAD HAT!')}&body=${body}`;
 });
