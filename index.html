@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>RAD HATS FOR RAD HUMANS</title>
-<meta name="description" content="Fifty custom hats, handmade in Marin by Svetlana. Every one with a name. Every one with a story. Every one sold.">
+<meta name="description" content="Custom hats designed by Svetlana, made with love. Every one with a name. Every one with a story.">
 <meta property="og:title" content="RAD HATS FOR RAD HUMANS">
-<meta property="og:description" content="Fifty custom hats, handmade in Marin. Every one with a name and a story.">
+<meta property="og:description" content="Custom hats designed by Svetlana, made with love. Every one with a name and a story.">
 <meta name="theme-color" content="#1A1008">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,12 @@
     --linen:#E0D0B8;
     --turquoise:#4A9090;
     --ink:#0E0A04;
+    --purple-dark:#3D1F4D;
+    --purple-mid:#6B3A7A;
+    --purple-bright:#9B4FC4;
+    --pink-dark:#7A1F47;
+    --pink-mid:#C44B7A;
+    --pink-bright:#E8568F;
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
@@ -43,8 +49,8 @@
   .hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.05}
   .hero .attr{margin-top:18px;font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;opacity:.65}
   .hero .sub{margin:24px 0 0;max-width:560px;font-size:1.05rem}
-  .hero .cta{display:inline-block;margin-top:34px;background:var(--metal);color:var(--charred);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:2px solid var(--metal);transition:.2s}
-  .hero .cta:hover{background:transparent;color:var(--linen);border-color:var(--linen)}
+  .hero .cta{display:inline-block;margin-top:34px;background:var(--metal);color:var(--charred);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:3px solid var(--pink-bright);transition:.2s}
+  .hero .cta:hover{background:transparent;color:var(--linen);border-color:var(--pink-bright)}
   .hero .cta2{display:inline-block;margin-top:14px;margin-left:12px;color:var(--linen);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:2px solid rgba(224,208,184,.4);transition:.2s}
   .hero .cta2:hover{border-color:var(--linen)}
 
@@ -69,8 +75,8 @@
 
   /* QUOTE BANDS */
   .quote{padding:80px 24px;text-align:center}
-  .quote.q1{background:var(--charred);color:var(--linen)}
-  .quote.q2{background:var(--driftwood);color:var(--linen)}
+  .quote.q1{background:linear-gradient(135deg,var(--purple-dark) 0%,var(--purple-mid) 35%,var(--pink-mid) 70%,var(--pink-bright) 100%);color:#fff}
+  .quote.q2{background:linear-gradient(135deg,var(--pink-dark) 0%,var(--pink-mid) 40%,var(--purple-mid) 75%,var(--purple-bright) 100%);color:#fff}
   .quote h2{font-size:clamp(1.8rem,4.5vw,3.2rem);max-width:880px;margin:0 auto;line-height:1.1}
   .quote .attr{margin-top:16px;font-size:.78rem;letter-spacing:.35em;text-transform:uppercase;opacity:.6}
 
@@ -94,14 +100,14 @@
   .order .opic img{border:3px solid var(--driftwood);border-radius:4px;width:100%;aspect-ratio:3/4;object-fit:cover;transform:rotate(-1.5deg)}
   @media(max-width:760px){.order .wrap{grid-template-columns:1fr}.order .opic{max-width:380px;margin:0 auto}}
   .order .inner{text-align:center}
-  .order h2{font-size:clamp(2rem,4vw,3rem)}
+  .order h2{font-size:clamp(2rem,4vw,3rem);color:var(--pink-bright)}
   .order .lede{margin:14px 0 36px;opacity:.75;font-size:1rem}
   .order form{display:grid;gap:16px;text-align:left}
   .order label{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;font-weight:700;color:var(--linen);opacity:.7}
   .order input,.order textarea{width:100%;margin-top:6px;padding:14px;border-radius:4px;border:2px solid transparent;background:#2a1e10;color:var(--linen);font-family:'Lato',sans-serif;font-size:1rem}
   .order input:focus,.order textarea:focus{outline:none;border-color:var(--turquoise)}
-  .order button{margin-top:10px;background:var(--metal);color:var(--charred);border:2px solid var(--metal);padding:16px;border-radius:4px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.9rem;cursor:pointer;transition:.2s;font-family:'Lato',sans-serif}
-  .order button:hover{background:transparent;color:var(--linen)}
+  .order button{margin-top:10px;background:var(--pink-bright);color:var(--charred);border:2px solid var(--pink-bright);padding:16px;border-radius:4px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.9rem;cursor:pointer;transition:.2s;font-family:'Lato',sans-serif}
+  .order button:hover{background:transparent;color:var(--pink-bright)}
   .order .note{font-size:.78rem;opacity:.5;margin-top:14px}
 
   /* FOOTER */
@@ -138,17 +144,10 @@
   <div class="htext">
     <h1>Hats are radical. Only people who wear hats understand that.</h1>
     <div class="attr">Philip Treacy</div>
-    <p class="sub">Fifty custom hats, handmade in Marin. Every one with a name. Every one with a story. Every one sold.</p>
     <a class="cta" href="#order">Commission Your Rad Hat</a>
   </div>
   <div class="photo"><img src="assets/section-1.jpg" alt="Svetlana, the Rad Hatter, in a custom Rad Hat"></div>
 </header>
-</div>
-
-<div class="strip">
-  <div><b>100+</b><span>Custom Hats Sold</span></div>
-  <div><b>50</b><span>Unique Designs</span></div>
-  <div><b>30%</b><span>Given to Mental Health</span></div>
 </div>
 
 <!-- TEMPORARILY HIDDEN: hat collection gallery (50 cards) — stories are unreviewed AI drafts.
@@ -172,13 +171,13 @@
   <p>Hey, Rad Human. My name is Svetlana, and this company is named after the raddest soul I have ever known, my dog Rad.</p>
   <p>Rad came into my life on a cloudy Sunday afternoon in Sausalito, after a movie about a dog made me cry hard enough to drive to a shelter that same week. The funny part is, I did not even like dogs. Then a dog named Rad walked up to me, tail wagging, and put his head on my knee. That was that. And no, I did not name him. He came with the name, three months after I had named my hat company. Some winks from the universe you do not question.</p>
   <p>The hats started when I ordered a pretty cool hat on Etsy and thought, I could make this. So I did. People got a little obsessed, and somehow I sold over fifty custom hats in a few months. Rad Hats found their way into three boutiques, into a studio of their own in Marin, and onto the head of Michael Franti, one of my favorite musicians, who performed in his very own Rad Hat. That was sooooooo rad.</p>
-  <p>Every hat on this page was made by hand, given a name, and sold to a rad human who carries its story forward. Rad's spirit is stitched into every single one.</p>
+  <p>Every hat on this page was designed by Svetlana and made with love. Each one features a custom mantra commissioned for the Rad human who carries its story forward. Rad's spirit is stitched into every single one.</p>
   <p>Life is rad, especially when we do what we love. It really is that simple.</p>
+  <p class="sig">Stay Rad, Svetlana</p>
   <div class="storypics">
     <figure><img src="assets/hero.jpg" alt="Svetlana and Rad in their matching custom hats" loading="lazy"><figcaption>Svet &amp; Rad, dressed for the occasion</figcaption></figure>
     <figure><img src="assets/section-3.jpg" alt="Rad the dog in his cowboy Rad Hat" loading="lazy"><figcaption>Rad, in his custom Rad Hat</figcaption></figure>
   </div>
-  <p class="sig">Stay Rad, Svet</p>
 </section>
 
 <section class="quote q2">
@@ -205,7 +204,7 @@
 
 <footer>
   <div class="logo">RAD HATS FOR RAD HUMANS</div>
-  <div>Copyright &copy; 2026 Rad Hats for Rad Humans. All rights reserved. Made with love in Marin, CA.</div>
+  <div>Copyright &copy; 2026 Rad Hats for Rad Humans. All rights reserved. Made with love wherever Svetlana calls home at the moment.</div>
 </footer>
 
 <div class="modal" id="modal" role="dialog" aria-modal="true">
