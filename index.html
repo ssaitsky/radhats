@@ -47,18 +47,18 @@
   }
 
   /* HERO */
-  .hero-wrap{background:var(--charred)}
-  .hero{color:var(--linen);padding:60px 24px 40px;text-align:center;max-width:1400px;margin:0 auto}
-  .hero-h1{font-size:clamp(4.5rem,14vw,14rem);line-height:.95;margin-bottom:28px}
-  .hero-h1 .plain{color:var(--linen)}
-  .hero-h1 .radical{background:linear-gradient(100deg,var(--eyeshadow-blue),var(--purple-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
-  .hero-quote{font-family:'Lato',sans-serif;font-size:clamp(1rem,2.2vw,1.5rem);font-weight:600;color:var(--linen);opacity:.85;letter-spacing:.02em;white-space:nowrap;margin-bottom:8px}
-  @media(max-width:640px){.hero-quote{white-space:normal}}
-  .hero-attr{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--linen);opacity:.5;margin-bottom:36px}
-  .hero-filmstrip{width:100%;border-radius:6px;overflow:hidden;margin-bottom:28px;border:2px solid rgba(224,208,184,.15)}
-  .hero-filmstrip img{width:100%;display:block;object-fit:cover}
-  .cta-sm{display:inline-block;background:transparent;color:var(--linen);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;padding:11px 28px;border-radius:4px;text-decoration:none;border:2px solid rgba(224,208,184,.45);transition:.2s;margin-bottom:16px}
-  .cta-sm:hover{border-color:var(--linen);background:rgba(224,208,184,.08)}
+  .hero-wrap{background:var(--driftwood)}
+  .hero{color:var(--linen);padding:70px 24px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center;max-width:1280px;margin:0 auto}
+  @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center}}
+  .hero .htext{text-align:left}
+  @media(max-width:760px){.hero .htext{text-align:center}}
+  .hero h1{font-family:'Caveat',cursive;font-weight:700;font-size:clamp(3rem,7vw,5.5rem);line-height:1.0;color:#6E1F3E;margin-bottom:18px}
+  .hero .attr{margin-top:10px;font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;opacity:.65}
+  .hero .sub{margin:20px 0 0;max-width:560px;font-size:1.05rem;color:var(--linen);opacity:.9}
+  .hero .cta{display:inline-block;margin-top:34px;background:var(--linen);color:var(--charred);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:3px solid var(--eyeshadow-blue);transition:.2s}
+  .hero .cta:hover{background:transparent;color:var(--linen);border-color:var(--eyeshadow-blue)}
+  .hero .photo{border:3px solid var(--linen);border-radius:8px;overflow:hidden;box-shadow:0 20px 40px rgba(10,8,4,.35);max-height:520px}
+  .hero .photo img{width:100%;height:100%;max-height:520px;object-fit:cover;object-position:center top}
 
   /* COUNTER STRIP */
   .strip{background:var(--charred);color:var(--linen);display:flex;justify-content:center;gap:48px;padding:28px 24px;flex-wrap:wrap;text-align:center}
@@ -145,13 +145,13 @@
 
 <div class="hero-wrap" id="top">
 <header class="hero">
-  <h1 class="hero-h1"><span class="plain">Hats Are</span><span class="radical">RADICAL</span></h1>
-  <p class="hero-quote">Only people who wear hats understand that.</p>
-  <p class="hero-attr">Philip Treacy</p>
-  <div class="hero-filmstrip">
-    <img src="assets/bio.jpg" alt="Svetlana, the Rad Hatter, and her collection of custom Rad Hats">
+  <div class="htext">
+    <h1>Hats Are Radical</h1>
+    <p class="sub">Only people who wear hats understand that.</p>
+    <div class="attr">Philip Treacy</div>
+    <a class="cta" href="#order">Commission Your Rad Hat</a>
   </div>
-  <a class="cta-sm" href="#order">Commission Your Rad Hat</a>
+  <div class="photo"><img src="assets/bio.jpg" alt="Svetlana, the Rad Hatter, in a custom Rad Hat"></div>
 </header>
 </div>
 
