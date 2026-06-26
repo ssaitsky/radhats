@@ -47,21 +47,18 @@
   }
 
   /* HERO */
-  .hero-wrap{background:var(--driftwood)}
-  .hero{color:var(--linen);padding:70px 24px;display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:start;max-width:1280px;margin:0 auto}
-  .hero .htext{text-align:left}
-  .hero .photo{border:3px solid var(--linen);border-radius:8px;overflow:hidden;box-shadow:0 20px 40px rgba(10,8,4,.35)}
-  .hero .photo img{width:100%;height:100%;object-fit:cover}
-  @media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center}.hero .htext{text-align:center}}
-  .hero h1{font-size:clamp(2.2rem,5vw,4rem);line-height:1.05}
-  .hero h1 .lead{display:block;font-size:clamp(3.2rem,7.5vw,6rem);background:linear-gradient(100deg,var(--eyeshadow-blue),var(--purple-bright));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:1}
-  .hero h1 .rest{display:block;margin-top:6px}
-  .hero .attr{margin-top:18px;font-size:.8rem;letter-spacing:.35em;text-transform:uppercase;opacity:.65}
-  .hero .sub{margin:24px 0 0;max-width:560px;font-size:1.05rem}
-  .hero .cta{display:inline-block;margin-top:34px;background:var(--linen);color:var(--charred);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:3px solid var(--eyeshadow-blue);transition:.2s}
-  .hero .cta:hover{background:transparent;color:var(--linen);border-color:var(--eyeshadow-blue)}
-  .hero .cta2{display:inline-block;margin-top:14px;margin-left:12px;color:var(--linen);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.82rem;padding:14px 32px;border-radius:4px;text-decoration:none;border:2px solid rgba(224,208,184,.4);transition:.2s}
-  .hero .cta2:hover{border-color:var(--linen)}
+  .hero-wrap{background:var(--charred)}
+  .hero{color:var(--linen);padding:60px 24px 40px;text-align:center;max-width:1400px;margin:0 auto}
+  .hero-h1{font-size:clamp(4.5rem,14vw,14rem);line-height:.95;margin-bottom:28px}
+  .hero-h1 .plain{display:block;color:var(--linen)}
+  .hero-h1 .radical{display:block;background:linear-gradient(100deg,var(--eyeshadow-blue),var(--purple-bright));-webkit-background-clip:text;background-clip:text;color:transparent}
+  .hero-quote{font-family:'Lato',sans-serif;font-size:clamp(1rem,2.2vw,1.5rem);font-weight:600;color:var(--linen);opacity:.85;letter-spacing:.02em;white-space:nowrap;margin-bottom:8px}
+  @media(max-width:640px){.hero-quote{white-space:normal}}
+  .hero-attr{font-size:.75rem;letter-spacing:.35em;text-transform:uppercase;color:var(--linen);opacity:.5;margin-bottom:36px}
+  .hero-filmstrip{width:100%;border-radius:6px;overflow:hidden;margin-bottom:28px;border:2px solid rgba(224,208,184,.15)}
+  .hero-filmstrip img{width:100%;display:block;object-fit:cover}
+  .cta-sm{display:inline-block;background:transparent;color:var(--linen);font-weight:700;letter-spacing:.1em;text-transform:uppercase;font-size:.78rem;padding:11px 28px;border-radius:4px;text-decoration:none;border:2px solid rgba(224,208,184,.45);transition:.2s;margin-bottom:16px}
+  .cta-sm:hover{border-color:var(--linen);background:rgba(224,208,184,.08)}
 
   /* COUNTER STRIP */
   .strip{background:var(--charred);color:var(--linen);display:flex;justify-content:center;gap:48px;padding:28px 24px;flex-wrap:wrap;text-align:center}
@@ -98,7 +95,7 @@
   .storypics figcaption{text-align:center;font-size:.78rem;color:var(--driftwood);margin-top:8px;letter-spacing:.1em;text-transform:uppercase}
   @media(max-width:560px){.storypics{grid-template-columns:1fr}}
   .story h2{font-size:clamp(2rem,4vw,3rem);text-align:center;margin-bottom:40px}
-  .story p{margin-bottom:22px;font-size:1.02rem;color:#3a2e24}
+  .story p{margin-bottom:22px;font-size:1.12rem;color:#3a2e24}
   .story .sig{font-family:'Caveat',cursive;font-size:1.8rem;font-weight:700;color:var(--charred)}
 
   /* ORDER FORM */
@@ -148,12 +145,13 @@
 
 <div class="hero-wrap" id="top">
 <header class="hero">
-  <div class="htext">
-    <h1><span class="lead">Hats are radical.</span><span class="rest">Only people who wear hats understand that.</span></h1>
-    <div class="attr">Philip Treacy</div>
-    <a class="cta" href="#order">Commission Your Rad Hat</a>
+  <h1 class="hero-h1"><span class="plain">Hats Are</span><span class="radical">RADICAL</span></h1>
+  <p class="hero-quote">Only people who wear hats understand that.</p>
+  <p class="hero-attr">Philip Treacy</p>
+  <div class="hero-filmstrip">
+    <img src="assets/bio.jpg" alt="Svetlana, the Rad Hatter, and her collection of custom Rad Hats">
   </div>
-  <div class="photo"><img src="assets/section-1.jpg" alt="Svetlana, the Rad Hatter, in a custom Rad Hat"></div>
+  <a class="cta-sm" href="#order">Commission Your Rad Hat</a>
 </header>
 </div>
 
@@ -180,7 +178,7 @@
   <p>The hats started when I ordered a pretty cool hat on Etsy and thought, I could make this. So I did. People got a little obsessed, and somehow I sold over fifty custom hats in a few months. Rad Hats found their way into three boutiques, into a studio of their own in Marin, and onto the head of Michael Franti, one of my favorite musicians, who performed in his very own Rad Hat. That was sooooooo rad.</p>
   <p>Every hat on this page was designed by Svetlana and made with love. Each one features a custom mantra commissioned for the Rad human who carries its story forward. Rad's spirit is stitched into every single one.</p>
   <p>Life is rad, especially when we do what we love. It really is that simple.</p>
-  <p class="sig">Stay Rad, Svetlana</p>
+  <p class="sig">Stay Rad,<br>Svetlana</p>
   <div class="storypics">
     <figure><img src="assets/hero.jpg" alt="Svetlana and Rad in their matching custom hats" loading="lazy"><figcaption>Svet &amp; Rad, dressed for the occasion</figcaption></figure>
     <figure><img src="assets/section-3.jpg" alt="Rad the dog in his cowboy Rad Hat" loading="lazy"><figcaption>Rad, in his custom Rad Hat</figcaption></figure>
