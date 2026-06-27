@@ -114,18 +114,13 @@
   .order button:hover,.order button:active{background:var(--purple-bright);color:var(--charred);border-color:var(--purple-bright)}
   .order .note{font-size:.78rem;opacity:.5;margin-top:14px}
 
-  /* SLIDESHOW */
-  .slideshow-wrap{background:var(--charred);padding:60px 0}
-  .slideshow{position:relative;max-width:900px;margin:0 auto;padding:0 24px}
-  .slides{position:relative;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:6px;background:#111}
-  .slide{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;object-position:center;opacity:0;transition:opacity .7s ease}
-  .slide.active{opacity:1}
-  .ss-prev,.ss-next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(224,208,184,.08);border:1px solid rgba(224,208,184,.2);color:var(--linen);font-size:1.3rem;width:42px;height:42px;border-radius:50%;cursor:pointer;transition:.2s;display:flex;align-items:center;justify-content:center;z-index:10}
-  .ss-prev{left:0}.ss-next{right:0}
-  .ss-prev:hover,.ss-next:hover{background:rgba(224,208,184,.18);border-color:rgba(224,208,184,.5)}
-  .ss-dots{display:flex;justify-content:center;gap:8px;margin-top:20px}
-  .ss-dot{width:7px;height:7px;border-radius:50%;background:rgba(224,208,184,.2);border:none;cursor:pointer;padding:0;transition:.2s}
-  .ss-dot.active{background:var(--linen)}
+  /* TICKER SLIDESHOW */
+  .ticker-wrap{background:var(--charred);padding:48px 0;overflow:hidden}
+  .ticker{overflow:hidden;width:100%}
+  .ticker-track{display:flex;gap:16px;width:max-content;animation:ticker-scroll 40s linear infinite}
+  .ticker-track:hover{animation-play-state:paused}
+  .ticker-track img{height:320px;width:auto;border-radius:4px;object-fit:cover;flex-shrink:0}
+  @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
   /* FOOTER */
   footer{background:var(--ink);color:#6a5a48;text-align:center;padding:40px 24px;font-size:.8rem}
@@ -186,6 +181,30 @@
   <div class="attr">Audrey Hepburn</div>
 </section>
 
+<!-- SLIDESHOW TICKER -->
+<section class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-track" id="ticker-track">
+      <img src="assets/slideshow/slide-01.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-02.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-03.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-04.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-05.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-06.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-07.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-08.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-09.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-10.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-11.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-12.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-13.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-14.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-15.jpg" alt="Rad Hat">
+      <img src="assets/slideshow/slide-16.jpg" alt="Rad Hat">
+    </div>
+  </div>
+</section>
+
 <section class="story" id="story">
   <h2>Our Rad Story</h2>
   <p>Hey, Rad Human. My name is Svetlana, and this company is named after the raddest soul I have ever known, my dog Rad.</p>
@@ -200,32 +219,6 @@
   </div>
 </section>
 
-<!-- SLIDESHOW -->
-<section class="slideshow-wrap">
-  <div class="slideshow" id="slideshow">
-    <div class="slides" id="slides">
-      <img src="assets/slideshow/slide-01.jpg" alt="Rad Hat" class="slide active" loading="eager">
-      <img src="assets/slideshow/slide-02.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-03.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-04.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-05.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-06.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-07.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-08.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-09.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-10.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-11.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-12.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-13.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-14.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-15.jpg" alt="Rad Hat" class="slide" loading="lazy">
-      <img src="assets/slideshow/slide-16.jpg" alt="Rad Hat" class="slide" loading="lazy">
-    </div>
-    <button class="ss-prev" aria-label="Previous">&#8592;</button>
-    <button class="ss-next" aria-label="Next">&#8594;</button>
-    <div class="ss-dots" id="ss-dots"></div>
-  </div>
-</section>
 
 <section class="quote q2">
   <h2>Cock your hat. Angles are attitudes.</h2>
@@ -370,35 +363,12 @@ document.getElementById('orderform').addEventListener('submit', e => {
 });
 </script>
 <script>
+// Duplicate ticker images so the loop is seamless
 (function(){
-  const slides = document.querySelectorAll('.slide');
-  const dotsWrap = document.getElementById('ss-dots');
-  let current = 0, timer;
-
-  slides.forEach((_,i)=>{
-    const d = document.createElement('button');
-    d.className = 'ss-dot' + (i===0?' active':'');
-    d.addEventListener('click',()=>goTo(i));
-    dotsWrap.appendChild(d);
-  });
-
-  function goTo(n){
-    slides[current].classList.remove('active');
-    dotsWrap.children[current].classList.remove('active');
-    current = (n + slides.length) % slides.length;
-    slides[current].classList.add('active');
-    dotsWrap.children[current].classList.add('active');
-    resetTimer();
-  }
-
-  function resetTimer(){
-    clearInterval(timer);
-    timer = setInterval(()=>goTo(current+1), 4000);
-  }
-
-  document.querySelector('.ss-prev').addEventListener('click',()=>goTo(current-1));
-  document.querySelector('.ss-next').addEventListener('click',()=>goTo(current+1));
-  resetTimer();
+  const track = document.getElementById('ticker-track');
+  if(!track) return;
+  const imgs = Array.from(track.querySelectorAll('img'));
+  imgs.forEach(img => track.appendChild(img.cloneNode()));
 })();
 </script>
 </body>
