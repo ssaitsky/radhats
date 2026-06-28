@@ -116,11 +116,10 @@
 
   /* TICKER SLIDESHOW */
   .ticker-wrap{background:var(--charred);padding:40px 0;overflow:hidden}
-  .ticker-track{display:flex;gap:12px;animation:ticker-scroll 34s linear infinite;cursor:grab}
+  .ticker-track{display:flex;gap:12px;cursor:grab;will-change:transform}
   .ticker-track.dragging{cursor:grabbing}
-  .ticker-track img{height:260px;width:auto;border-radius:4px;flex-shrink:0;cursor:zoom-in;display:block}
+  .ticker-track img{height:260px;width:auto;border-radius:4px;flex-shrink:0;display:block}
   @media(max-width:640px){.ticker-track img{height:160px}}
-  @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* LIGHTBOX */
   .lightbox{position:fixed;inset:0;background:rgba(10,8,4,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;cursor:zoom-out}
@@ -398,54 +397,64 @@ window.addEventListener('load', () => window.scrollTo(0, 0));
 
 (function(){
   const track = document.getElementById('ticker-track');
+  const speed = 0.6; // px per frame (~34s to scroll full set)
+  let pos = 0;
+  let halfWidth = 0;
+  let raf;
+  let dragging = false;
+  let dragStartX = 0;
+  let dragStartPos = 0;
+  let moved = false;
 
-  // Drag-to-scroll
-  let dragging = false, startX = 0, offset = 0, currentOffset = 0;
-
-  function getAnimOffset() {
-    const style = window.getComputedStyle(track);
-    const matrix = new DOMMatrix(style.transform);
-    return matrix.m41;
+  function getHalfWidth() {
+    return track.scrollWidth / 2;
   }
 
-  function startDrag(x) {
+  function tick() {
+    if (!dragging) {
+      pos -= speed;
+      halfWidth = getHalfWidth();
+      if (pos <= -halfWidth) pos += halfWidth;
+    }
+    track.style.transform = `translateX(${pos}px)`;
+    raf = requestAnimationFrame(tick);
+  }
+
+  // Wait for images to load so scrollWidth is accurate
+  window.addEventListener('load', () => {
+    halfWidth = getHalfWidth();
+    raf = requestAnimationFrame(tick);
+  });
+
+  function onDragStart(x) {
     dragging = true;
-    startX = x;
-    offset = getAnimOffset();
-    track.style.animationPlayState = 'paused';
-    track.style.transform = `translateX(${offset}px)`;
-    track.style.animation = 'none';
-    currentOffset = offset;
+    moved = false;
+    dragStartX = x;
+    dragStartPos = pos;
     track.classList.add('dragging');
   }
 
-  function moveDrag(x) {
+  function onDragMove(x) {
     if (!dragging) return;
-    const delta = x - startX;
-    currentOffset = offset + delta;
-    track.style.transform = `translateX(${currentOffset}px)`;
+    const delta = x - dragStartX;
+    if (Math.abs(delta) > 3) moved = true;
+    pos = dragStartPos + delta;
+    halfWidth = getHalfWidth();
+    if (pos <= -halfWidth) pos += halfWidth;
+    if (pos > 0) pos -= halfWidth;
   }
 
-  function endDrag(didMove) {
+  function onDragEnd() {
     if (!dragging) return;
     dragging = false;
     track.classList.remove('dragging');
-    if (!didMove) return; // click — handled by lightbox
-    // Resume animation from current visual position
-    const halfWidth = track.scrollWidth / 2;
-    let pos = ((currentOffset % halfWidth) - halfWidth) % halfWidth;
-    track.style.transform = '';
-    track.style.animation = '';
-    track.style.animationDelay = `${(pos / halfWidth) * 34}s`;
-    track.style.animationPlayState = 'running';
   }
 
-  let moved = false;
-  track.addEventListener('mousedown', e => { moved = false; startDrag(e.clientX); });
-  window.addEventListener('mousemove', e => { if(dragging){ moved = true; moveDrag(e.clientX); } });
-  window.addEventListener('mouseup', () => endDrag(moved));
+  track.addEventListener('mousedown', e => { e.preventDefault(); onDragStart(e.clientX); });
+  window.addEventListener('mousemove', e => onDragMove(e.clientX));
+  window.addEventListener('mouseup', onDragEnd);
 
-  // Lightbox — only open if not dragging
+  // Lightbox
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
 
@@ -457,10 +466,10 @@ window.addEventListener('load', () => window.scrollTo(0, 0));
     lightbox.classList.add('open');
   });
 
-  function close(){ lightbox.classList.remove('open'); lbImg.src=''; }
+  function close() { lightbox.classList.remove('open'); lbImg.src = ''; }
   document.getElementById('lightbox-close').addEventListener('click', close);
-  lightbox.addEventListener('click', e => { if(e.target === lightbox) close(); });
-  document.addEventListener('keydown', e => { if(e.key==='Escape') close(); });
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) close(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') close(); });
 })();
 </script>
 </body>
