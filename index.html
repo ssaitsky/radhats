@@ -116,8 +116,8 @@
 
   /* TICKER SLIDESHOW */
   .ticker-wrap{background:var(--charred);padding:40px 0;overflow:hidden}
-  .ticker-track{display:flex;gap:12px;animation:ticker-scroll 43s linear infinite}
-  @media(hover:hover){.ticker-wrap:hover .ticker-track{animation-play-state:paused}}
+  .ticker-track{display:flex;gap:12px;animation:ticker-scroll 34s linear infinite;cursor:grab}
+  .ticker-track.dragging{cursor:grabbing}
   .ticker-track img{height:260px;width:auto;border-radius:4px;flex-shrink:0;cursor:zoom-in;display:block}
   @media(max-width:640px){.ticker-track img{height:160px}}
   @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -399,15 +399,61 @@ window.addEventListener('load', () => window.scrollTo(0, 0));
 (function(){
   const track = document.getElementById('ticker-track');
 
-  // Lightbox
+  // Drag-to-scroll
+  let dragging = false, startX = 0, offset = 0, currentOffset = 0;
+
+  function getAnimOffset() {
+    const style = window.getComputedStyle(track);
+    const matrix = new DOMMatrix(style.transform);
+    return matrix.m41;
+  }
+
+  function startDrag(x) {
+    dragging = true;
+    startX = x;
+    offset = getAnimOffset();
+    track.style.animationPlayState = 'paused';
+    track.style.transform = `translateX(${offset}px)`;
+    track.style.animation = 'none';
+    currentOffset = offset;
+    track.classList.add('dragging');
+  }
+
+  function moveDrag(x) {
+    if (!dragging) return;
+    const delta = x - startX;
+    currentOffset = offset + delta;
+    track.style.transform = `translateX(${currentOffset}px)`;
+  }
+
+  function endDrag(didMove) {
+    if (!dragging) return;
+    dragging = false;
+    track.classList.remove('dragging');
+    if (!didMove) return; // click — handled by lightbox
+    // Resume animation from current visual position
+    const halfWidth = track.scrollWidth / 2;
+    let pos = ((currentOffset % halfWidth) - halfWidth) % halfWidth;
+    track.style.transform = '';
+    track.style.animation = '';
+    track.style.animationDelay = `${(pos / halfWidth) * 34}s`;
+    track.style.animationPlayState = 'running';
+  }
+
+  let moved = false;
+  track.addEventListener('mousedown', e => { moved = false; startDrag(e.clientX); });
+  window.addEventListener('mousemove', e => { if(dragging){ moved = true; moveDrag(e.clientX); } });
+  window.addEventListener('mouseup', () => endDrag(moved));
+
+  // Lightbox — only open if not dragging
   const lightbox = document.getElementById('lightbox');
   const lbImg = document.getElementById('lightbox-img');
 
   track.addEventListener('click', e => {
+    if (moved) return;
     const img = e.target.closest('img');
-    if(!img) return;
+    if (!img) return;
     lbImg.src = img.src;
-    lbImg.alt = img.alt;
     lightbox.classList.add('open');
   });
 
