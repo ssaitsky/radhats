@@ -116,12 +116,11 @@
 
   /* TICKER SLIDESHOW */
   .ticker-wrap{background:var(--charred);padding:40px 0;overflow:hidden}
-  .ticker{overflow:hidden;width:100%;-webkit-overflow-scrolling:touch}
-  .ticker-track{display:flex;gap:12px;width:max-content;animation:ticker-scroll 40s linear infinite;will-change:transform}
-  @media(hover:hover){.ticker-track:hover{animation-play-state:paused}}
-  .ticker-track img{height:260px;width:auto;border-radius:4px;object-fit:cover;flex-shrink:0;cursor:zoom-in;display:block}
-  @media(max-width:640px){.ticker-track img{height:180px}}
-  @keyframes ticker-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+  .ticker-track{display:flex;gap:12px;animation:ticker-scroll 50s linear infinite}
+  @media(hover:hover){.ticker-wrap:hover .ticker-track{animation-play-state:paused}}
+  .ticker-track img{height:260px;width:auto;border-radius:4px;flex-shrink:0;cursor:zoom-in;display:block}
+  @media(max-width:640px){.ticker-track img{height:160px}}
+  @keyframes ticker-scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
   /* LIGHTBOX */
   .lightbox{position:fixed;inset:0;background:rgba(10,8,4,.92);display:none;align-items:center;justify-content:center;z-index:200;padding:24px;cursor:zoom-out}
@@ -191,25 +190,39 @@
 
 <!-- SLIDESHOW TICKER -->
 <section class="ticker-wrap">
-  <div class="ticker">
-    <div class="ticker-track" id="ticker-track">
-      <img src="assets/slideshow/slide-01.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-02.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-03.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-04.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-05.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-06.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-07.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-08.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-09.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-10.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-11.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-12.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-13.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-14.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-15.jpg" alt="Rad Hat">
-      <img src="assets/slideshow/slide-16.jpg" alt="Rad Hat">
-    </div>
+  <div class="ticker-track" id="ticker-track">
+    <img src="assets/slideshow/slide-01.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-02.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-03.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-04.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-05.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-06.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-07.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-08.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-09.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-10.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-11.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-12.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-13.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-14.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-15.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-16.jpg" alt="Rad Hat">
+    <img src="assets/slideshow/slide-01.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-02.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-03.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-04.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-05.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-06.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-07.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-08.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-09.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-10.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-11.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-12.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-13.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-14.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-15.jpg" alt="Rad Hat" aria-hidden="true">
+    <img src="assets/slideshow/slide-16.jpg" alt="Rad Hat" aria-hidden="true">
   </div>
 </section>
 
@@ -385,11 +398,6 @@ window.addEventListener('load', () => window.scrollTo(0, 0));
 
 (function(){
   const track = document.getElementById('ticker-track');
-  if(!track) return;
-
-  // Duplicate for seamless loop
-  const imgs = Array.from(track.querySelectorAll('img'));
-  imgs.forEach(img => track.appendChild(img.cloneNode()));
 
   // Lightbox
   const lightbox = document.getElementById('lightbox');
